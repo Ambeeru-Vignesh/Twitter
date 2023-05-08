@@ -105,4 +105,32 @@ const forgetPassword = asyncHandler(async (req, res, next) => {
   });
 });
 
+const resetPassword = asyncHandler(async (req, res, next) => {
+  const { token } = req.params;
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    res.status(400);
+    throw new Error("Invalid user data");
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, async (err, decode) => {
+    if (err) {
+      res.status(400);
+      throw new Error("Invalid token");
+    }
+
+    const { password } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    user.password = hashedPassword;
+    user.resetToken = undefined;
+    user.save();
+    res.status(200).json({
+      message: "Password updated successfully",
+    });
+
+    next();
+  });
+});
+
 export { signUp, signIn, forgetPassword, resetPassword };
