@@ -7,7 +7,6 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
-console.log(process.env.EMAIL);
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -53,6 +52,7 @@ const signUp = asyncHandler(async (req, res, next) => {
 const signIn = asyncHandler(async (req, res, next) => {
   try {
     const { email } = req.body;
+    console.log(req.body);
     const user = await User.findOne({ email });
     if (!user) {
       res.status(400);
@@ -66,7 +66,8 @@ const signIn = asyncHandler(async (req, res, next) => {
     const token = generateToken(user._id);
     const { password, ...othersData } = user._doc;
     res.status(200).json({
-      othersData,
+      data: othersData,
+      message: "Login successful",
     });
   } catch (error) {
     next(error);

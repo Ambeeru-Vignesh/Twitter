@@ -7,8 +7,8 @@ import {
   resetPassword,
 } from "../controllers/auth.js";
 
-router.post("/signUp", signUp);
-router.post("/signIn", signIn);
+router.post("/signup", signUp);
+router.post("/signin", signIn);
 
 router.post("/forgetPassword", forgetPassword);
 router.post("/resetPassword", resetPassword);
