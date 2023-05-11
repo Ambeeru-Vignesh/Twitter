@@ -11,12 +11,13 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { user, isSuccess } = useSelector((state) => state.auth);
+  const userInfo = localStorage.getItem("user");
 
   useEffect(() => {
-    if (isSuccess || user) {
+    if (userInfo) {
       navigate("/");
     }
-  }, [navigate, isSuccess]);
+  }, [navigate,userInfo]);
 
   const handleLogin = (e) => {
     e.preventDefault();

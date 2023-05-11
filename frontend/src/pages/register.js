@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,24 +14,16 @@ const Register = () => {
   const navigate = useNavigate();
 
   const { user, isSuccess } = useSelector((state) => state.auth);
+  const userInfo = localStorage.getItem("user");
 
   useEffect(() => {
-    if (isSuccess || user) {
+    if (userInfo) {
       navigate("/");
     }
-  }, [navigate, isSuccess]);
+  }, [navigate,userInfo]);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const userData = {
-      email,
-      password,
-    };
-    dispatch(login(userData));
-  };
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log("hello");
     const userData = {
       username,
       password,

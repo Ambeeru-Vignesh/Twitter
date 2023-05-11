@@ -75,20 +75,19 @@ const signIn = asyncHandler(async (req, res, next) => {
 });
 
 const forgetPassword = asyncHandler(async (req, res, next) => {
-  const { email } = req.body;
-  const user = await User.findOne(email);
-  if (!user) {
+  const user = await User.findOne({ email: req.body.email });
+  if (!user || user === null) {
     res.status(400);
-    throw new Error("Invalid user data");
+    throw new Error("could not find");
   }
-  // const token = jwt.sign(user._id, process.env.JWT_SECRET, {
-  //   expiresIn: "1h",
-  // });
-  const token = generateToken(user._id);
+  console.log(user);
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
   user.resetToken = token;
-  user.save();
-
-  const resetLink = `http://localhost:3000/reset-password?token=${token}`;
+  await user.save();
+  console.log(token);
+  const resetLink = `http://localhost:3000/resetpassword?token=${token}`;
   const mailOptions = {
     from: process.env.EMAIL,
     to: user.email,
@@ -99,38 +98,50 @@ const forgetPassword = asyncHandler(async (req, res, next) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(error);
+      res
+        .status(400)
+        .json({ message: "Sorry, there was an error sending the email" });
     } else {
-      console.log("Email sent: " + info.response + token);
+      console.log("Email sent: " + token);
+      res.status(200).json({
+        message: "Email sent, Please check your gmail",
+      });
     }
   });
 });
 
 const resetPassword = asyncHandler(async (req, res, next) => {
-  const { token } = req.params;
-  const user = await User.findOne({ email: req.body.email });
-  if (!user) {
-    res.status(400);
-    throw new Error("Invalid user data");
-  }
+  const { token } = req.body;
+  console.log(token);
+  const { password } = req.body;
+  console.log(password);
+
+  // if (!user) {
+  //   res.status(400);
+  //   throw new Error("Invalid user data");
+  // }
 
   jwt.verify(token, process.env.JWT_SECRET, async (err, decode) => {
     if (err) {
-      res.status(400);
-      throw new Error("Invalid token");
+      throw new Error(err.message);
+    } else {
+      console.log("yes success");
+
+      const user = await User.findOne({ resetToken: token });
+      if (user) {
+        if (req.body.password) {
+          const salt = await bcrypt.genSalt(10);
+          const hashedPassword = await bcrypt.hash(password, salt);
+          user.password = hashedPassword;
+          await user.save();
+          res.send({
+            message: "Password reseted successfully",
+          });
+        }
+      } else {
+        res.status(404).send({ message: "User not found" });
+      }
     }
-
-    const { password } = req.body;
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    user.password = hashedPassword;
-    user.resetToken = undefined;
-    user.save();
-    res.status(200).json({
-      message: "Password updated successfully",
-    });
-
-    next();
   });
 });
 

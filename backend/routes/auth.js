@@ -10,7 +10,7 @@ import {
 router.post("/signup", signUp);
 router.post("/signin", signIn);
 
-router.post("/forgetPassword", forgetPassword);
-router.post("/resetPassword", resetPassword);
+router.post("/forgotPassword", forgetPassword);
+router.post("/resetpassword", resetPassword);
 
 export default router;

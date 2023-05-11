@@ -21,6 +21,11 @@ const login = async (userData) => {
   return response.data;
 };
 
+const forgotPassword = async (email) => {
+  const response = await axios.post(API_URL + "forgotPassword", { email });
+  return response.data;
+};
+
 const logout = () => {
   localStorage.removeItem("user");
 };
@@ -29,6 +34,7 @@ const authService = {
   register,
   login,
   logout,
+  forgotPassword,
 };
 
 export default authService;
