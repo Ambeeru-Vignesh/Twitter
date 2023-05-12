@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout, reset } from "../redux/auth/authSlice";
 import { message } from "antd";
+import Layout from "./Layout";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const Home = () => {
       {user && (
         <>
           <h1>Home</h1>
+          <Layout />
           <p>Welcome {user.name}</p>
           <button onClick={() => handleClick()}>Logout</button>
         </>
