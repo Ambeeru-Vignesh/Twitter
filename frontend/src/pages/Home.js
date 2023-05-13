@@ -5,6 +5,7 @@ import { logout, reset } from "../redux/auth/authSlice";
 import { message } from "antd";
 import Layout from "./Layout";
 import LeftSidebar from "../components/LeftSidebar";
+import RightSidebar from "../components/RightSidebar";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -29,9 +30,14 @@ const Home = () => {
   return (
     <div>
       {user && (
-        <>
-          <LeftSidebar />
-        </>
+        <div className="grid grid-cols-1 md:grid-cols-4">
+          <div className="px-6">
+            <LeftSidebar />
+          </div>
+          <div className="px-6">
+            <RightSidebar />
+          </div>
+        </div>
       )}
     </div>
   );
