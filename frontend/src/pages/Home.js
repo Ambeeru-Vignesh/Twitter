@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { logout, reset } from "../redux/auth/authSlice";
 import { message } from "antd";
 import Layout from "./Layout";
+import LeftSidebar from "../components/LeftSidebar";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,8 @@ const Home = () => {
   useEffect(() => {
     if (!userInfo) {
       navigate("/signin");
-    } else {
+    }
+    if (loginMessage) {
       message.success(loginMessage);
       dispatch(reset());
     }
@@ -28,10 +30,7 @@ const Home = () => {
     <div>
       {user && (
         <>
-          <h1>Home</h1>
-          <Layout />
-          <p>Welcome {user.name}</p>
-          <button onClick={() => handleClick()}>Logout</button>
+          <LeftSidebar />
         </>
       )}
     </div>
