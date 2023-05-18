@@ -1,16 +1,21 @@
 const mongoose = require("mongoose");
 
-const tweetSchema = new mongoose.Schema(
+const commentSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "User",
-      required: [true, "Tweet should be associated with an user"],
+      required: true,
+    },
+    tweetId: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Tweet",
+      required: true,
     },
     text: {
       type: String,
-      required: [true, "Tweet should contain text"],
-      maxlength: 260,
+      required: [true, "Comment should contain text"],
+      maxlength: 280,
     },
     media: {
       type: String,
@@ -31,5 +36,5 @@ const tweetSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Tweet = mongoose.model("Tweet", tweetSchema);
-export default Tweet;
+const Comment = mongoose.model("Comment", commentSchema);
+export default Comment;
