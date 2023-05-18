@@ -8,7 +8,7 @@ const RightSidebar = () => {
       <p className="font-bold">#Arjuna</p>
       <p className="font-bold">#Bheema</p>
       <p className="font-bold">#Yudhisthira</p>
-      <p className="font-bold">#Nakula</p>
+      <p className="font-bold">#Naku</p>
       <p className="font-bold">#Sahadeva</p>
     </div>
   );
