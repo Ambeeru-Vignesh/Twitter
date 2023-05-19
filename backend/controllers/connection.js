@@ -15,15 +15,6 @@ const follow = async (req, res) => {
       following,
     });
 
-    if (
-      !(await Conversation.exists({
-        members: { $all: [String(req.user._id), req.params.id] },
-      }))
-    )
-      await Conversation.create({
-        members: [String(req.user._id), req.params.id],
-      });
-
     res.status(200).json({
       status: "success",
       data: {
