@@ -62,8 +62,8 @@ const unfollow = async (req, res) => {
 const getFollowers = async (req, res) => {
   try {
     const followers = (
-      await Connection.find({ followed: req.params.id }).populate("following")
-    ).map((data) => data.following);
+      await Connection.find({ following: req.params.id }).populate("followers")
+    ).map((data) => data.followers);
 
     res.status(200).json({
       status: "success",
@@ -84,9 +84,9 @@ const getFollowing = async (req, res) => {
   try {
     const followings = (
       await Connection.find({
-        following: req.params.id,
+        followers: req.params.id,
       }).populate("followed")
-    ).map((data) => data.followed);
+    ).map((data) => data.following);
 
     res.status(200).json({
       status: "success",
