@@ -1,5 +1,4 @@
 import Tweet from "../models/Tweet";
-import User from "../models/User";
 
 const createTweet = async (req, res, next) => {
   try {

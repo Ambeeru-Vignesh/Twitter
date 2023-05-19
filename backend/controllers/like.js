@@ -4,7 +4,7 @@ import Tweet from "../models/Tweet";
 // Like Tweet
 const likeTweet = async (req, res) => {
   try {
-    const userId = req.user.id,
+    const userId = req.user._id,
       tweetId = req.params.id;
 
     // Checking if the user has already liked the tweet
@@ -45,7 +45,7 @@ const likeTweet = async (req, res) => {
 // UnLike Tweet
 const unLikeTweet = async (req, res) => {
   try {
-    const userId = req.user.id,
+    const userId = req.user._id,
       tweetId = req.params.id;
 
     const like = await Like.findOneAndDelete({ userId, tweetId });
