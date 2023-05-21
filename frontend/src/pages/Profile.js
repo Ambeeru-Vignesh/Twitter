@@ -10,6 +10,8 @@ const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+  const { tweets, isSuccess } = useSelector((state) => state.tweet);
+
   const userInfo = localStorage.getItem("user");
   const { id } = useParams();
 
@@ -28,7 +30,8 @@ const Profile = () => {
           <div className="px-6">
             <LeftSidebar />
           </div>
-          <h1>Tweets</h1>
+          {isSuccess &&
+            tweets.map((tweet) => <h2 id={tweet.key}>{tweet.text}</h2>)}
           <div className="px-6">
             <RightSidebar />
           </div>

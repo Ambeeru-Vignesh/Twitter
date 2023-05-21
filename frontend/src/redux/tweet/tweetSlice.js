@@ -153,6 +153,19 @@ export const tweetSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(getUserTweets.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserTweets.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.tweets.push(action.payload);
+      })
+      .addCase(getUserTweets.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });
