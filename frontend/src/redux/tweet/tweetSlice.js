@@ -71,6 +71,25 @@ export const unlikeTweet = createAsyncThunk(
   }
 );
 
+export const getUserTweets = createAsyncThunk(
+  "tweet/getUserTweets",
+  async (id, thunkAPI) => {
+    try {
+      const token = await thunkAPI.getState().auth.user.othersData.resetToken;
+      return await tweetService.getUserTweets(id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const getLikedTweetsOfUser = createAsyncThunk(
   "tweet/getLikedTweetsOfUser",
   async (id, thunkAPI) => {

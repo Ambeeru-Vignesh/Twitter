@@ -29,7 +29,17 @@ const unlikeTweet = async (tweet) => {
   return res;
 };
 
-const getLikedTweetsOfUser = async (id) => {
+const getUserTweets = async (id, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const res = await axios.get(API_URL + `userTweets/${id}`);
+  return res.data;
+};
+
+const getLikedTweetsOfUser = async (id, token) => {
   const res = await axios.get(`/api/tweets/like/${id}`);
   return res;
 };
@@ -65,6 +75,7 @@ const tweetService = {
   likeTweet,
   unlikeTweet,
   getLikedTweetsOfUser,
+  getUserTweets,
   deleteTweet,
   createRetweet,
   getRetweetsOfUser,
