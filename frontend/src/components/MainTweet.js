@@ -1,29 +1,34 @@
-import React, { useState } from "react";
-// import TimelineTweet from "../TimelineTweet/TimelineTweet";
+import React, { useEffect, useState } from "react";
 
-import { useSelector } from "react-redux";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { createTweet } from "../redux/tweet/tweetSlice";
 
 const MainTweet = () => {
+  const dispatch = useDispatch();
   const [tweetText, setTweetText] = useState("");
 
   const { user } = useSelector((state) => state.auth);
+  const { tweets, isSuccess } = useSelector((state) => state.tweet);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const submitTweet = await axios.post("/tweets", {
-        userId: user._id,
-        description: tweetText,
-      });
-      window.location.reload(false);
-    } catch (err) {
-      console.log(err);
-    }
+    const data = {
+      userId: user.othersData._id,
+      tweet: tweetText,
+    };
+    dispatch(createTweet(data));
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log(tweets);
+    }
+  }, [isSuccess]);
 
   return (
     <div>
+      {isSuccess && tweets.map((data) => <h2>{data.text}</h2>)}
+
       {user && <p className="font-bold pl-2 my-2">{user.username}</p>}
 
       <form className="border-b-2 pb-6">

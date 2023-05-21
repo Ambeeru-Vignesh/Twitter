@@ -1,11 +1,11 @@
-import Tweet from "../models/Tweet";
+import Tweet from "../models/Tweet.js";
 
 const createTweet = async (req, res, next) => {
   try {
-    const { tweet, user } = req.body;
-    const tweetObj = new Tweet({ tweet, user });
-    const tweetSaved = await tweetObj.save();
-    res.status(201).json(tweetSaved);
+    const { tweet, userId } = req.body;
+    const tweetObj = new Tweet({ text: tweet, userId: userId });
+    await tweetObj.save();
+    res.status(201).json(tweetObj);
   } catch (error) {
     next(error);
   }
@@ -58,7 +58,7 @@ const getUserTweets = async (req, res, next) => {
   }
 };
 
-export default {
+export {
   createTweet,
   getTweets,
   getTweet,

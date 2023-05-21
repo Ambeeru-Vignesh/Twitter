@@ -7,14 +7,16 @@ const loadHomeFeed = async () => {
   return res;
 };
 
-const createTweet = async () => {
+const createTweet = async (data, token) => {
   const config = {
     headers: {
       "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
     },
   };
-  const res = await axios.post(API_URL, config);
-  return res;
+  console.log(data);
+  const res = await axios.post(API_URL + "createTweet", data);
+  return res.data;
 };
 
 const likeTweet = async (tweet) => {
@@ -23,7 +25,7 @@ const likeTweet = async (tweet) => {
 };
 
 const unlikeTweet = async (tweet) => {
-  const res = await axios.post(API_URL + `/unliked/${tweet.id}`);
+  const res = await axios.post(API_URL + `/unlike/${tweet.id}`);
   return res;
 };
 
