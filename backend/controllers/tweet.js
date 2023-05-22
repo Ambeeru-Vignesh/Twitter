@@ -51,7 +51,7 @@ const deleteTweet = async (req, res, next) => {
 
 const getUserTweets = async (req, res, next) => {
   try {
-    const tweets = await Tweet.find({ user: req.params.id });
+    const tweets = await Tweet.find({ userId: req.params.id });
     res.status(200).json(tweets);
   } catch (error) {
     next(error);

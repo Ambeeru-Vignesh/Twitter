@@ -137,6 +137,10 @@ export const tweetSlice = createSlice({
       state.isSuccess = false;
       state.isLoading = false;
       state.message = "";
+      state.tweets = [];
+    },
+    setTweets: (state, action) => {
+      state.tweets = action.payload; // Set the tweets state with the payload
     },
   },
   extraReducers: (builder) => {
@@ -147,7 +151,6 @@ export const tweetSlice = createSlice({
       .addCase(createTweet.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.tweets.push(action.payload);
       })
       .addCase(createTweet.rejected, (state, action) => {
         state.isLoading = false;
@@ -170,5 +173,5 @@ export const tweetSlice = createSlice({
   },
 });
 
-export const { reset } = tweetSlice.actions;
+export const { reset, setTweets } = tweetSlice.actions;
 export default tweetSlice.reducer;

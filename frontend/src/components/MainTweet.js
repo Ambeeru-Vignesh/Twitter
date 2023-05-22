@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { createTweet } from "../redux/tweet/tweetSlice";
+import { createTweet, setTweets } from "../redux/tweet/tweetSlice";
 
 const MainTweet = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const MainTweet = () => {
 
   return (
     <div>
-      {isSuccess && tweets.map((data) => <h2>{data.text}</h2>)}
+      {isSuccess && tweets.map((data) => <h2 key={data._id}>{data.text}</h2>)}
 
       {user && <p className="font-bold pl-2 my-2">{user.username}</p>}
 

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
-import MainTweet from "../components/MainTweet";
 import { getUserTweets } from "../redux/tweet/tweetSlice";
+import TweetModalContent from "../components/TweetModalContent";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -16,12 +16,12 @@ const Profile = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    if (!userInfo) {
+    if (!user) {
       navigate("/signin");
     } else {
       dispatch(getUserTweets(id));
     }
-  }, [navigate, userInfo, dispatch, getUserTweets]);
+  }, [navigate, user, dispatch, getUserTweets]);
 
   return (
     <div>
@@ -30,10 +30,9 @@ const Profile = () => {
           <div className="px-6">
             <LeftSidebar />
           </div>
-          {isSuccess &&
-            tweets.map((tweet) => <h2 id={tweet.key}>{tweet.text}</h2>)}
           <div className="px-6">
-            <RightSidebar />
+            {isSuccess &&
+              tweets[0].map((tweet) => <h2 key={tweet._id}>{tweet.text}</h2>)}
           </div>
         </div>
       )}
