@@ -58,6 +58,11 @@ const getUserTweets = async (req, res, next) => {
   }
 };
 
+const createComment = async (req, res, next) => {
+  try {
+  } catch (error) {}
+};
+
 export {
   createTweet,
   getTweets,

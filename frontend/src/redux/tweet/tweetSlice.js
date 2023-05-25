@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import tweetService from "./tweetService";
 
 const initialState = {
-  tweets: [],
+  tweets: null,
   homeFeed: null,
   tweetsAndRetweets: null,
   likes: [],
@@ -137,7 +137,7 @@ export const tweetSlice = createSlice({
       state.isSuccess = false;
       state.isLoading = false;
       state.message = "";
-      state.tweets = [];
+      state.tweets = null;
     },
     setTweets: (state, action) => {
       state.tweets = action.payload; // Set the tweets state with the payload
@@ -151,6 +151,9 @@ export const tweetSlice = createSlice({
       .addCase(createTweet.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.tweets = state.tweets
+          ? [action.payload, ...state.tweets]
+          : [action.payload];
       })
       .addCase(createTweet.rejected, (state, action) => {
         state.isLoading = false;
@@ -163,7 +166,7 @@ export const tweetSlice = createSlice({
       .addCase(getUserTweets.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.tweets.push(action.payload);
+        state.tweets = action.payload;
       })
       .addCase(getUserTweets.rejected, (state, action) => {
         state.isLoading = false;

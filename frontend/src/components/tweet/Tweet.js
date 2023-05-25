@@ -6,6 +6,15 @@ import profilePicture from "../../assets/defaultProfile.jpg";
 
 import Modal from "react-modal";
 
+// import {
+//   createComment,
+//   createRetweet,
+//   deleteRetweet,
+//   deleteTweet,
+//   likeTweet,
+//   unlikeTweet,
+// } from "../../redux/actions/tweetAction";
+
 import {
   createComment,
   createRetweet,
@@ -13,7 +22,7 @@ import {
   deleteTweet,
   likeTweet,
   unlikeTweet,
-} from "../../redux/actions/tweetAction";
+} from "../../redux/tweet/tweetSlice";
 
 const Tweet = ({ tweet }) => {
   const {
@@ -30,7 +39,7 @@ const Tweet = ({ tweet }) => {
   const [isModalOpen, setModalIsOpen] = useState(false);
   const [tweetText, setTweetText] = useState("");
 
-  const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.user.othersData);
   const likes = useSelector((state) => state.tweet.likes);
   const retweets = useSelector((state) => state.tweet.retweets);
 

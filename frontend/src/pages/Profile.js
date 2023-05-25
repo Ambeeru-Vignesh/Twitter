@@ -32,7 +32,7 @@ const Profile = () => {
           </div>
           <div className="px-6">
             {isSuccess &&
-              tweets[0].map((tweet) => <h2 key={tweet._id}>{tweet.text}</h2>)}
+              tweets.map((tweet) => <h2 key={tweet._id}>{tweet.text}</h2>)}
           </div>
         </div>
       )}
