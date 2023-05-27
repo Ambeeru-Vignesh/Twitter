@@ -3,8 +3,26 @@ import axios from "axios";
 // const API_URL = "/api/users/";
 
 const getUser = async (id) => {
-  const response = await axios.get(`/api/users/${id}`);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(`/api/users/${id}`, config);
 
+  if (response.data) {
+    return response.data;
+  }
+};
+
+const updateUser = async (id, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.put(`/api/users/${id}`, config);
   if (response.data) {
     return response.data;
   }
