@@ -6,6 +6,7 @@ import { message } from "antd";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
 import MainTweet from "../components/MainTweet";
+import HomeFeed from "./HomeFeed";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const Home = () => {
             <LeftSidebar />
           </div>
           <MainTweet />
+          <HomeFeed />
           <div className="px-6">
             <RightSidebar />
           </div>
