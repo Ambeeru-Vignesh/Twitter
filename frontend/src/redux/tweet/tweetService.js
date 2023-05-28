@@ -2,8 +2,13 @@ import axios from "axios";
 
 const API_URL = "/api/tweets/";
 
-const loadHomeFeed = async () => {
-  const res = await axios.get(API_URL + "home");
+const loadHomeFeed = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const res = await axios.get(API_URL + "home", config);
   return res.data;
 };
 
