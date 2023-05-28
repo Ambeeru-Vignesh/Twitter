@@ -4,7 +4,7 @@ const API_URL = "/api/tweets/";
 
 const loadHomeFeed = async () => {
   const res = await axios.get(API_URL + "home");
-  return res;
+  return res.data;
 };
 
 const createTweet = async (data, token) => {

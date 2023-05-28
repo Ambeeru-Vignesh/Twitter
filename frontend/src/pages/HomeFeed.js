@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import tweetService from "../redux/tweet/tweetService";
 import Tweet from "../components/tweet/Tweet";
 import Retweet from "../components/tweet/Retweet";
 import Comment from "../components/tweet/Comment";
+import { getLikedTweetsOfUser, loadHomeFeed } from "../redux/tweet/tweetSlice";
 
 const HomeFeed = () => {
   const { user } = useSelector((state) => state.auth);
-  const tweets = useSelector((state) => state.tweet);
+  const { tweets } = useSelector((state) => state.tweet);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(tweetService.loadHomeFeed(user));
-    dispatch(tweetService.getLikedTweetsOfUser(user._id));
-    dispatch(tweetService.getRetweetsOfUser(user._id));
+    dispatch(loadHomeFeed());
+    dispatch(getLikedTweetsOfUser(user._id));
+    // dispatch(getRetweetsOfUsed(user._id));
   });
 
   return (
