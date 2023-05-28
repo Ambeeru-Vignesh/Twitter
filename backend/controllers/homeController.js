@@ -6,7 +6,8 @@ import Comment from "../models/Comment.js";
 
 const getHome = async (req, res) => {
   try {
-    let followings = await Connection.find({ following: req.user.id });
+    const id = req.user._id.toString();
+    let followings = await Connection.find({ following: id });
     let result = [];
 
     //Get other users tweets and retweets
@@ -23,15 +24,15 @@ const getHome = async (req, res) => {
           populate: { path: "userId", select: "name username" },
         })
         .populate("userId", "name username");
+
+      const commentsArr = await Comment.find({
+        userId: followings[i].followed,
+      })
+        .populate("tweetId")
+        .populate("userId", "name username");
+
+      result = result.concat(tweetArr, retweetArr, commentsArr);
     }
-
-    const commentsArr = await Comment.find({
-      userId: followings[i].followed,
-    })
-      .populate("tweetId")
-      .populate("userId", "name username");
-
-    result = result.concat(tweetArr, retweetArr, commentsArr);
 
     //Get Logged in user's tweets and retweets
     result = result.concat(
@@ -79,7 +80,7 @@ const getHome = async (req, res) => {
     });
   } catch (error) {
     res.status(400).json({
-      status: "fail",
+      status: "failed bitch",
       message: error.message,
     });
   }

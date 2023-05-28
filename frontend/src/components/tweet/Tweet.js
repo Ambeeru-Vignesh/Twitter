@@ -140,7 +140,7 @@ const Tweet = ({ tweet }) => {
               <Link to={`/profile/${_id}`}>
                 <p>
                   <span className="text-base leading-6 font-bold font text-black dark:text-gray-primary">
-                    {name}
+                    {user.username}
                   </span>
                   <span className="ml-1 text-gray-500">{`@${username}`}</span>
                 </p>
@@ -309,6 +309,20 @@ const Tweet = ({ tweet }) => {
               className="flex text-center items-center cursor-pointer"
             >
               <div className="max-w-12 group flex items-center text-gray-500 text-base leading-6 font-medium rounded-full hover:text-blue-300">
+                <svg
+                  // onClick={toggleLike}
+                  className="text-center h-5 w-5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <g>
+                    <path
+                      fill={onLikeTweet ? "currentColor" : "none"}
+                      d="M12 21.35l-1.45-1.32C5.4 15.48 2 12.22 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.37.81 4.5 2.09C13.63 3.81 15.26 3 17 3c3.08 0 5.5 2.42 5.5 5.5 0 3.72-3.4 6.98-8.55 11.53L12 21.35z"
+                    />
+                  </g>
+                </svg>
                 {likes.filter((tweet) => tweet._id === tweetId).length === 0 ? (
                   <i
                     onClick={onLikeTweet}

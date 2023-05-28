@@ -17,7 +17,7 @@ export const loadHomeFeed = createAsyncThunk(
   "tweets/loadHomeFeed",
   async (_, thunkAPI) => {
     try {
-      const token = await thunkAPI.getState().auth.user.othersData.resetToken;
+      const token = await thunkAPI.getState().auth.user.token;
       console.log(token);
       return await tweetService.loadHomeFeed(token);
     } catch (error) {

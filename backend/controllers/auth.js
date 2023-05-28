@@ -67,6 +67,7 @@ const signIn = asyncHandler(async (req, res, next) => {
     const { password, ...othersData } = user._doc;
     res.status(200).json({
       othersData,
+      token,
     });
   } catch (error) {
     next(error);
