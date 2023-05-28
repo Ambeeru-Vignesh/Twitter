@@ -27,8 +27,6 @@ const MainTweet = () => {
 
   return (
     <div>
-      {isSuccess && tweets.map((data) => <h2 key={data._id}>{data.text}</h2>)}
-
       {user && <p className="font-bold pl-2 my-2">{user.username}</p>}
 
       <form className="border-b-2 pb-6">
