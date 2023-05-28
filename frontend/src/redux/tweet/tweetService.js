@@ -69,6 +69,21 @@ const deleteRetweet = async (id) => {
   return res;
 };
 
+const createComment = async (data, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const text = data.text;
+  const response = await axios.post(
+    `/api/tweets/comment/${data.tweetId}`,
+    { text },
+    config
+  );
+  return response;
+};
+
 const tweetService = {
   loadHomeFeed,
   createTweet,
@@ -80,6 +95,7 @@ const tweetService = {
   createRetweet,
   getRetweetsOfUser,
   deleteRetweet,
+  createComment,
 };
 
 export default tweetService;

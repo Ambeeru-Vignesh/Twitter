@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { setAlert } from "../../redux/actions/alertAction";
-import profilePicture from "../../assets/defaultProfile.jpg";
+// import { setAlert } from "../../redux/actions/alertAction";
+// import profilePicture from "../../assets/defaultProfile.jpg";
 
 import Modal from "react-modal";
 
@@ -53,7 +53,6 @@ const Tweet = ({ tweet }) => {
     setModalIsOpen(false);
     dispatch(createComment(tweetId, tweetText));
     setTweetText("");
-    dispatch(setAlert("Your tweet was sent", "info"));
   };
 
   const modalStyle = {
@@ -88,7 +87,6 @@ const Tweet = ({ tweet }) => {
 
   const onDeleteTweet = () => {
     dispatch(deleteTweet(tweetId));
-    dispatch(setAlert("Your tweet was deleted", "success"));
   };
 
   // Should Create Retweet or Delete Retweet
@@ -122,7 +120,7 @@ const Tweet = ({ tweet }) => {
             to={`/profile/${_id}`}
             className="flex items-center justify-center w-full"
           >
-            <img
+            {/* <img
               src={
                 user.profilePicture
                   ? require(`../../assets/users/${user.profilePicture}`).default
@@ -130,7 +128,8 @@ const Tweet = ({ tweet }) => {
               }
               alt="User Profile"
               className="w-12 h-12 rounded-full"
-            />
+            /> */}
+            <h5>Image</h5>
           </Link>
         </div>
       </div>

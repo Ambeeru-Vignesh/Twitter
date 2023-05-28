@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import tweetService from "../redux/tweet/tweetService";
 import Tweet from "../components/tweet/Tweet";
-import Retweet from "../components/tweet/retweet";
+import Retweet from "../components/tweet/Retweet";
 import Comment from "../components/tweet/Comment";
 
 const HomeFeed = () => {
@@ -27,7 +27,7 @@ const HomeFeed = () => {
         })
       ) : (
         <div className="mt-4 w-full flex justify-center items-center">
-          <Spinner />
+          {/* <Spinner /> */}
         </div>
       )}
     </div>

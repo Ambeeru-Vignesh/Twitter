@@ -128,6 +128,65 @@ export const deleteTweet = createAsyncThunk(
   }
 );
 
+export const createRetweet = createAsyncThunk(
+  "Retweet/create",
+  async (id, thunkAPI) => {
+    try {
+      const token = await thunkAPI.getState().auth.user.othersData.resetToken;
+      console.log(token);
+      return await tweetService.createRetweet(id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const deleteRetweet = createAsyncThunk(
+  "Retweet/deleteRetweet",
+  async (id, thunkAPI) => {
+    try {
+      const token = await thunkAPI.getState().auth.user.token;
+      return await tweetService.deleteTweet(id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const createComment = createAsyncThunk(
+  "comment/create",
+  async (data, thunkAPI) => {
+    try {
+      const token = await thunkAPI.getState().auth.user.othersData.resetToken;
+      console.log(token);
+      return await tweetService.createRetweet(data, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const tweetSlice = createSlice({
   name: "tweet",
   initialState,
