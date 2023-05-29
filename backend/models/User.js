@@ -22,17 +22,21 @@ const UserSchema = new mongoose.Schema(
     profile: {
       type: String,
     },
-    followers: {
-      type: Array,
-      defaultValue: [],
-    },
-    following: {
-      type: Array,
-      defaultValue: [],
-    },
-    description: {
+    bio: {
       type: String,
+      maxlength: 160,
     },
+    location: {
+      type: String,
+      maxlength: 30,
+    },
+    website: {
+      type: String,
+      maxLength: 100,
+    },
+    DOB: Date,
+    profilePicture: String,
+    coverPicture: String,
   },
   {
     timestamps: true,
