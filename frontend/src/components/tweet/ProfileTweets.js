@@ -24,7 +24,7 @@ const TweetsList = ({ id }) => {
         })
       ) : (
         <div className="mt-4 w-full flex justify-center items-center">
-          <Spinner />
+          {/* <Spinner /> */}
         </div>
       )}
     </div>
