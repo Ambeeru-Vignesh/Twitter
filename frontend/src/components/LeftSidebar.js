@@ -38,7 +38,7 @@ const LeftSidebar = () => {
                 <p>Explore</p>
               </div>
             </Link>
-            <Link to={`/profile/${user.othersData._id}`}>
+            <Link to={`/profile/${user._id}`}>
               <div className="flex items-center space-x-6 px-2 py-2 hover:bg-slate-200 rounded-full cursor-pointer">
                 <PersonIcon fontSize="large" />
                 <p>Profile</p>
@@ -47,8 +47,8 @@ const LeftSidebar = () => {
           </div>
           <div className="flex justify-between">
             <div>
-              <p className="font-bold">{user.othersData.username}</p>
-              <p className="font-bold">{user.othersData.username}</p>
+              <p className="font-bold">{user.username}</p>
+              <p className="font-bold">{user.username}</p>
             </div>
             <div>
               <Link to="/signin">

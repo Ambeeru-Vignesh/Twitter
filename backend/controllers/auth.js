@@ -66,7 +66,9 @@ const signIn = asyncHandler(async (req, res, next) => {
     const token = generateToken(user._id);
     const { password, ...othersData } = user._doc;
     res.status(200).json({
-      othersData,
+      _id: user._id,
+      name: user.username,
+      email: user.email,
       token,
     });
   } catch (error) {

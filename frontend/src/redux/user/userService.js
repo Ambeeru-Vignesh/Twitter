@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const API_URL = "/api/users/";
 
-const getUser = async (id) => {
+const getUser = async (id, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -75,7 +75,7 @@ const getFollowers = async (id, token) => {
   }
 };
 
-const getFollowings = async (id) => {
+const getFollowings = async (id, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -88,7 +88,7 @@ const getFollowings = async (id) => {
   }
 };
 
-const getUserTweetsAndRetweets = async (id) => {
+const getUserTweetsAndRetweets = async (id, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
