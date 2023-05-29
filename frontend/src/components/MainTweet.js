@@ -13,7 +13,7 @@ const MainTweet = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      userId: user.othersData._id,
+      userId: user._id,
       tweet: tweetText,
     };
     dispatch(createTweet(data));

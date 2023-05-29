@@ -4,10 +4,11 @@ import Tweet from "../components/tweet/Tweet";
 import Retweet from "../components/tweet/Retweet";
 import Comment from "../components/tweet/Comment";
 import { getLikedTweetsOfUser, loadHomeFeed } from "../redux/tweet/tweetSlice";
+import Loader from "./Loader";
 
 const HomeFeed = () => {
   const { user } = useSelector((state) => state.auth);
-  const { tweets } = useSelector((state) => state.tweet);
+  const { tweets, isLoading } = useSelector((state) => state.tweet);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,6 +19,7 @@ const HomeFeed = () => {
 
   return (
     <div>
+      {isLoading && <Loader />}
       {tweets ? (
         tweets.map((data) => {
           if (data.text && data.tweetId)

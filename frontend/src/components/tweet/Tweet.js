@@ -39,7 +39,7 @@ const Tweet = ({ tweet }) => {
   const [isModalOpen, setModalIsOpen] = useState(false);
   const [tweetText, setTweetText] = useState("");
 
-  const user = useSelector((state) => state.auth.user.othersData);
+  const { user } = useSelector((state) => state.auth);
   const likes = useSelector((state) => state.tweet.likes);
   const retweets = useSelector((state) => state.tweet.retweets);
 
