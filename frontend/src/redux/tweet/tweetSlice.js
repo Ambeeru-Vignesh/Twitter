@@ -37,7 +37,7 @@ export const createTweet = createAsyncThunk(
   "tweet/create",
   async (data, thunkAPI) => {
     try {
-      const token = await thunkAPI.getState().auth.user.othersData.resetToken;
+      const token = await thunkAPI.getState().auth.user.token;
       console.log(token);
       return await tweetService.createTweet(data, token);
     } catch (error) {
@@ -95,7 +95,7 @@ export const getUserTweets = createAsyncThunk(
   "tweet/getUserTweets",
   async (id, thunkAPI) => {
     try {
-      const token = await thunkAPI.getState().auth.user.othersData.resetToken;
+      const token = await thunkAPI.getState().auth.user.token;
       return await tweetService.getUserTweets(id, token);
     } catch (error) {
       const message =
@@ -152,7 +152,7 @@ export const createRetweet = createAsyncThunk(
   "tweet/retweet/create",
   async (id, thunkAPI) => {
     try {
-      const token = await thunkAPI.getState().auth.user.othersData.resetToken;
+      const token = await thunkAPI.getState().auth.user.token;
       console.log(token);
       return await tweetService.createRetweet(id, token);
     } catch (error) {
@@ -191,7 +191,7 @@ export const createComment = createAsyncThunk(
   "tweet/comment/create",
   async (data, thunkAPI) => {
     try {
-      const token = await thunkAPI.getState().auth.user.othersData.resetToken;
+      const token = await thunkAPI.getState().auth.user.token;
       console.log(token);
       return await tweetService.createComment(data, token);
     } catch (error) {

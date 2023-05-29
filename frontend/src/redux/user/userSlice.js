@@ -12,7 +12,7 @@ const initialState = {
 
 export const getUser = createAsyncThunk("user/get", async (id, thunkAPI) => {
   try {
-    const token = await thunkAPI.getState().auth.user.othersData.resetToken;
+    const token = await thunkAPI.getState().auth.user.token;
     console.log(token);
     return await userService.getUser(id, token);
   } catch (error) {
