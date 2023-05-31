@@ -22,11 +22,7 @@ export const loadHomeFeed = createAsyncThunk(
       return await tweetService.loadHomeFeed(token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        error.response?.data?.data.message || error.message || error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }
@@ -42,11 +38,7 @@ export const createTweet = createAsyncThunk(
       return await tweetService.createTweet(data, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        error.response?.data?.data.message || error.message || error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }
@@ -61,11 +53,7 @@ export const likeTweet = createAsyncThunk(
       return await tweetService.likeTweet(tweet, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        error.response?.data?.data.message || error.message || error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }
@@ -80,11 +68,7 @@ export const unlikeTweet = createAsyncThunk(
       return await tweetService.unlikeTweet(tweet, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        error.response?.data?.data.message || error.message || error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }
@@ -99,11 +83,7 @@ export const getUserTweets = createAsyncThunk(
       return await tweetService.getUserTweets(id, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        error.response?.data?.data.message || error.message || error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }
@@ -118,11 +98,7 @@ export const getLikedTweetsOfUser = createAsyncThunk(
       return await tweetService.getLikedTweetsOfUser(id, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        error.response?.data?.data.message || error.message || error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }
@@ -137,11 +113,7 @@ export const deleteTweet = createAsyncThunk(
       return await tweetService.deleteTweet(id, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        error.response?.data?.data.message || error.message || error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }
@@ -157,11 +129,7 @@ export const createRetweet = createAsyncThunk(
       return await tweetService.createRetweet(id, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        error.response?.data?.data.message || error.message || error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }
@@ -176,11 +144,7 @@ export const deleteRetweet = createAsyncThunk(
       return await tweetService.deleteTweet(id, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        error.response?.data?.data.message || error.message || error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }
@@ -196,11 +160,7 @@ export const createComment = createAsyncThunk(
       return await tweetService.createComment(data, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
+        error.response?.data?.data.message || error.message || error.toString();
 
       return thunkAPI.rejectWithValue(message);
     }
